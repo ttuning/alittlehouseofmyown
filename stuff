@@ -13,7 +13,7 @@ cd kafka_2.12-2.2.1/bin
 Create Topic:
 -------------
 sh kafka-topics.sh --create --zookeeper z-3.mykafkatestcluster.pa2z1v.c5.kafka.us-east-1.amazonaws.com:2181 --replication-factor 3 --partitions 1 --topic AWSKafkaTutorialTopic
-
+z-1.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:2181 
 
 Setup Java Trust Store for MSK:
 -------------------------------
