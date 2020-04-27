@@ -10,6 +10,8 @@ Get Zookeeper Hostname:
 aws kafka describe-cluster --region us-east-1 --cluster-arn "arn:aws:kafka:us-east-1:177369285206:cluster/mykafkatestcluster/60cc5290-75c7-4a6d-90de-9f5f4434240e-5"
 cd kafka_2.12-2.2.1/bin
 
+aws kafka get-bootstrap-brokers --region us-east-1 --cluster-arn "arn:aws:kafka:us-east-1:785018351924:cluster/edaviyaESPProcessing/7adc91c9-f47e-4121-866a-afeb2ade02dc-6"
+
 Create Topic:
 -------------
 sh kafka-topics.sh --create --zookeeper z-3.mykafkatestcluster.pa2z1v.c5.kafka.us-east-1.amazonaws.com:2181 --replication-factor 3 --partitions 1 --topic AWSKafkaTutorialTopic
