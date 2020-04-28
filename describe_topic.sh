@@ -3,9 +3,7 @@
 #Copyright © 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
 #SPDX-License-Identifier: Apache-2.0
 
-
-BPATH=/opt/kafka/bin
-
+BPATH=/home/tom.tuning@gapac.com/kafka/bin
 echo $1
 
 if [[ "$#" != 1                  ]] ;  then 
@@ -14,5 +12,5 @@ if [[ "$#" != 1                  ]] ;  then
 fi
 
 $BPATH/kafka-topics.sh --describe \
---zookeeper localhost:2181 \
+--zookeeper  z-1.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:2181
 --topic $1
