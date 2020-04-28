@@ -1,0 +1,87 @@
+<project name="datainjestion" threads="1" pubsub="auto" heartbeat-interval="1">
+  <metadata>
+    <meta id="studioUploadedBy">tom.tuning@gapac.com</meta>
+    <meta id="studioUploaded">1588096237511</meta>
+    <meta id="studioModifiedBy">tom.tuning@gapac.com</meta>
+    <meta id="studioModified">1588097110121</meta>
+    <meta id="layout">{"cq1":{"Data_Ingestion_Subscriber_Connector":{"x":95,"y":-515},"To_Data_Processing_Event_Counter":{"x":100,"y":-345},"kafka_incoming":{"x":90,"y":-650}}}</meta>
+    <meta id="studioTags">O2D, Data_Ingestion</meta>
+  </metadata>
+  <properties>
+    <property name="PROJ_DIR"><![CDATA[C:\Users\Public\ESP\Recaust]]></property>
+    <property name="PROJ_NAME"><![CDATA[SCRN_Data_Ingestion]]></property>
+    <property name="CQ_NAME"><![CDATA[cq1]]></property>
+    <property name="HIST_SOURCE_NAME"><![CDATA[python_pi_data]]></property>
+    <property name="ASSET_PATH"><![CDATA[Process\RecaustArea\LRC-RECAUST01, Asset Types\Lime Kiln\LRC-LMK01, Asset Types\Slaker\LRC-SLKR01, Asset Types\Mud Filter\LRC-MF01]]></property>
+  </properties>
+  <contqueries>
+    <contquery name="cq1">
+      <windows>
+        <window-source pubsub="true" index="pi_EMPTY" insert-only="true" name="kafka_incoming">
+          <schema>
+            <fields>
+              <field name="ID" type="int32" key="true"/>
+              <field name="elementindex" type="string"/>
+              <field name="element" type="string" key="true"/>
+              <field name="attribute" type="string"/>
+              <field name="value" type="string"/>
+              <field name="timestamp" type="stamp"/>
+              <field name="status" type="string"/>
+            </fields>
+          </schema>
+          <connectors>
+            <connector class="kafka" name="kafka_IN">
+              <properties>
+                <property name="type"><![CDATA[pub]]></property>
+                <property name="dateformat"><![CDATA['%Y-%m-%d %H:%M:%S]]></property>
+                <property name="kafkainitialoffset"><![CDATA[smallest]]></property>
+                <property name="kafkaglobalconfig"><![CDATA[enable.sparse.connections=false]]></property>
+                <property name="useoffsetmsgid"><![CDATA[true]]></property>
+                <property name="kafkahostport"><![CDATA[b-2.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:9094]]></property>
+                <property name="kafkapartition"><![CDATA[0]]></property>
+                <property name="kafkatopic"><![CDATA[GPSASDVESP01_62001.datainjestion.cq1.kafka_incoming.I]]></property>
+                <property name="kafkatype"><![CDATA[binary]]></property>
+                <property name="urlhostport"><![CDATA[GPSASDVESP01_62001]]></property>
+              </properties>
+            </connector>
+          </connectors>
+        </window-source>
+        <window-compute pubsub="true" index="pi_EMPTY" name="Data_Ingestion_Subscriber_Connector">
+          <schema>
+            <fields>
+              <field name="ID" type="int32" key="true"/>
+              <field name="elementindex" type="string"/>
+              <field name="element" type="string"/>
+              <field name="attribute" type="string"/>
+              <field name="value" type="string"/>
+              <field name="timestamp" type="stamp"/>
+              <field name="status" type="string"/>
+            </fields>
+          </schema>
+          <output>
+            <field-expr><![CDATA[elementindex]]></field-expr>
+            <field-expr><![CDATA[element]]></field-expr>
+            <field-expr><![CDATA[attribute]]></field-expr>
+            <field-expr><![CDATA[value]]></field-expr>
+            <field-expr><![CDATA[timestamp]]></field-expr>
+            <field-expr><![CDATA[status]]></field-expr>
+          </output>
+          <connectors>
+            <connector class="adapter" name="Data_Ingestion_Subscriber" active="false">
+              <properties>
+                <property name="type"><![CDATA[sub]]></property>
+                <property name="command"><![CDATA[dfesp_esp_adapter -C subscribeurl="dfESP://localhost:@LOCAL_HOST@/@PROJ_NAME@/cq1/Data_Ingestion_Subscriber_Connector?snapshot=true?collapse=true"]]></property>
+                <property name="url"><![CDATA[url=dummy,publishurl="dfESP://localhost:@LOCAL_HOST@/Recaust_Data_Processing/cq1/Data_Ingestion_Publisher_Connector"]]></property>
+              </properties>
+            </connector>
+          </connectors>
+        </window-compute>
+        <window-counter pubsub="true" index="pi_EMPTY" count-interval="1 seconds" name="To_Data_Processing_Event_Counter"/>
+      </windows>
+      <edges>
+        <edge source="Data_Ingestion_Subscriber_Connector" target="To_Data_Processing_Event_Counter"/>
+        <edge source="kafka_incoming" target="Data_Ingestion_Subscriber_Connector"/>
+      </edges>
+    </contquery>
+  </contqueries>
+</project>
