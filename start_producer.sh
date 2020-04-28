@@ -9,7 +9,7 @@ echo $1
 if [[ "$#" != 1                  ]] ;  then 
    echo "Usage: $0 topic_name"
    exit 1 
-fi
+fi 
 
 $BPATH/kafka-console-producer.sh \
 --broker-list b-2.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:9094,b-3.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:9094, b-1.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:9094 \
