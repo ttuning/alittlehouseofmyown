@@ -13,7 +13,7 @@ fi
 
 
 $BPATH/kafka-console-consumer.sh \
---bootstrap-server iotdemo.na.sas.com:9092,iotdemo.na.sas.com:9093,iotdemo.na.sas.com:9094 \
+--bootstrap-server b-2.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:9094,b-3.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:9094, b-1.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:9094 \
 --topic $1 \
 --consumer.config client.properties \
 --from-beginning
