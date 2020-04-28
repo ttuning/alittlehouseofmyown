@@ -1,0 +1,7 @@
+GPSASDVESP01_62001.M
+GPSASDVESP01_62001.datainjestion.cq1.kafka_incoming.I
+GPSASDVESP01_62001.datainjestion.cq1.kafka_outgoing.O
+SASESPAdapterMetapub
+SASESPAdapterMetasub
+__consumer_offsets
+ingestion
