@@ -11,6 +11,7 @@ aws kafka describe-cluster --region us-east-1 --cluster-arn "arn:aws:kafka:us-ea
 cd kafka_2.12-2.2.1/bin
 
 aws kafka get-bootstrap-brokers --region us-east-1 --cluster-arn "arn:aws:kafka:us-east-1:785018351924:cluster/edaviyaESPProcessing/7adc91c9-f47e-4121-866a-afeb2ade02dc-6"
+ "BootstrapBrokerStringTls": "b-2.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:9094,b-3.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:9094,b-1.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:9094"
 
 Create Topic:
 -------------
