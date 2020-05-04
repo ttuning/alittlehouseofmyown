@@ -10,7 +10,8 @@ metatopic = "SASESPAdapterMetapub"
 sas 
 {
 hotfailover=false
-
+zookeeperhostport = "z-1.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:2181"
+failovergroup = "ESPadaptergroup1"
 numbufferedmsgs = "1000"
 dateformat="%Y-%m-%d %H:%M:%S"
 }
