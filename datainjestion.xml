@@ -3,8 +3,8 @@
     <meta id="studioUploadedBy">tom.tuning@gapac.com</meta>
     <meta id="studioUploaded">1588096237511</meta>
     <meta id="studioModifiedBy">tom.tuning@gapac.com</meta>
-    <meta id="studioModified">1588097110121</meta>
-    <meta id="layout">{"cq1":{"Data_Ingestion_Subscriber_Connector":{"x":95,"y":-515},"To_Data_Processing_Event_Counter":{"x":100,"y":-345},"kafka_incoming":{"x":90,"y":-650}}}</meta>
+    <meta id="studioModified">1588773736472</meta>
+    <meta id="layout">{"cq1":{"Data_Ingestion_Subscriber_Connector":{"x":90,"y":-525},"kafka_incoming":{"x":90,"y":-650}}}</meta>
     <meta id="studioTags">O2D, Data_Ingestion</meta>
   </metadata>
   <properties>
@@ -34,8 +34,8 @@
               <properties>
                 <property name="type"><![CDATA[pub]]></property>
                 <property name="dateformat"><![CDATA['%Y-%m-%d %H:%M:%S]]></property>
-                <property name="kafkainitialoffset"><![CDATA[smallest]]></property>
-                <property name="kafkaglobalconfig"><![CDATA[enable.sparse.connections=false]]></property>
+                <property name="kafkainitialoffset"><![CDATA[largest]]></property>
+                <property name="kafkaglobalconfig"><![CDATA[enable.sparse.connections=false;security.protocol=SSL]]></property>
                 <property name="useoffsetmsgid"><![CDATA[true]]></property>
                 <property name="kafkahostport"><![CDATA[b-2.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:9094]]></property>
                 <property name="kafkapartition"><![CDATA[0]]></property>
@@ -67,19 +67,26 @@
             <field-expr><![CDATA[status]]></field-expr>
           </output>
           <connectors>
-            <connector class="adapter" name="Data_Ingestion_Subscriber" active="false">
+            <connector class="kafka" name="kafka_OUT">
               <properties>
                 <property name="type"><![CDATA[sub]]></property>
-                <property name="command"><![CDATA[dfesp_esp_adapter -C subscribeurl="dfESP://localhost:@LOCAL_HOST@/@PROJ_NAME@/cq1/Data_Ingestion_Subscriber_Connector?snapshot=true?collapse=true"]]></property>
-                <property name="url"><![CDATA[url=dummy,publishurl="dfESP://localhost:@LOCAL_HOST@/Recaust_Data_Processing/cq1/Data_Ingestion_Publisher_Connector"]]></property>
+                <property name="dateformat"><![CDATA['%Y-%m-%d %H:%M:%S]]></property>
+                <property name="hotfailover"><![CDATA[true]]></property>
+                <property name="zookeeperhostport"><![CDATA[ z-1.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:2181]]></property>
+                <property name="kafkaglobalconfig"><![CDATA[enable.sparse.connections=false;security.protocol=SSL]]></property>
+                <property name="snapshot"><![CDATA[false]]></property>
+                <property name="kafkahostport"><![CDATA[b-2.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:9094]]></property>
+                <property name="kafkapartition"><![CDATA[0]]></property>
+                <property name="kafkatopic"><![CDATA[GPSASDVESP01_62001.datainjestion.cq1.kafka_outgoing.O]]></property>
+                <property name="kafkatype"><![CDATA[binary]]></property>
+                <property name="urlhostport"><![CDATA[GPSASDVESP01_62001]]></property>
+                <property name="numbufferedmsgs"><![CDATA[1000]]></property>
               </properties>
             </connector>
           </connectors>
         </window-compute>
-        <window-counter pubsub="true" index="pi_EMPTY" count-interval="1 seconds" name="To_Data_Processing_Event_Counter"/>
       </windows>
       <edges>
-        <edge source="Data_Ingestion_Subscriber_Connector" target="To_Data_Processing_Event_Counter"/>
         <edge source="kafka_incoming" target="Data_Ingestion_Subscriber_Connector"/>
       </edges>
     </contquery>
