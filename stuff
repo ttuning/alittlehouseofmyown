@@ -1,3 +1,6 @@
+dfESPconnector::setState(): Connector kafkatransportconn in group default has new state: running
+dfESPconnector::setState(): Connector pi in group default has new state: running
+
 kdkdMSK Client Machine Configuration:
 --------------------------------
 
