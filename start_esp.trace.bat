@@ -1,0 +1,1 @@
+"C:\Program Files\SAS\Viya\SASEventStreamProcessingEngine\6.2\bin\dfesp_xml_server.exe" -http 62000 -pubsub 62001 -loglevel esp=trace -PI_SYSTEM GPAWSAPIAFD0 -SERVER_DATABASE GPAWSAPIAFD0\GP-ProcessContext -LOCAL_HOST 62000 -AF_DATABASE GP-ProcessContext
