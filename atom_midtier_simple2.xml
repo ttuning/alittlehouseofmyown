@@ -1,0 +1,66 @@
+<project name="atom_midtier_simple2" threads="1" pubsub="auto" heartbeat-interval="1">
+  <metadata>
+    <meta id="studioUploadedBy">tom.tuning@gapac.com</meta>
+    <meta id="studioUploaded">1588957229902</meta>
+    <meta id="studioModifiedBy">tom.tuning@gapac.com</meta>
+    <meta id="studioModified">1588964969977</meta>
+    <meta id="layout">{"cq1":{"Data_Ingestion_Publisher_Connector":{"x":-550,"y":-390},"Functional1":{"x":-565,"y":-260}}}</meta>
+  </metadata>
+  <contqueries>
+    <contquery name="cq1">
+      <windows>
+        <window-source pubsub="true" index="pi_EMPTY" insert-only="true" name="Data_Ingestion_Publisher_Connector">
+          <schema>
+            <fields>
+              <field name="ID" type="int32" key="true"/>
+              <field name="elementindex" type="string"/>
+              <field name="element" type="string"/>
+              <field name="attribute" type="string"/>
+              <field name="value" type="string"/>
+              <field name="timestamp" type="stamp"/>
+              <field name="status" type="string"/>
+            </fields>
+          </schema>
+          <connectors>
+            <connector class="kafka" name="kafka_IN">
+              <properties>
+                <property name="type"><![CDATA[pub]]></property>
+                <property name="dateformat"><![CDATA['%Y-%m-%d %H:%M:%S]]></property>
+                <property name="kafkainitialoffset"><![CDATA[largest]]></property>
+                <property name="kafkaglobalconfig"><![CDATA[enable.sparse.connections=false;security.protocol=SSL]]></property>
+                <property name="useoffsetmsgid"><![CDATA[true]]></property>
+                <property name="kafkahostport"><![CDATA[b-2.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:9094]]></property>
+                <property name="kafkapartition"><![CDATA[0]]></property>
+                <property name="kafkatopic"><![CDATA[GPSASDVESP01_62001.datainjestion.cq1.kafka_outgoing.O]]></property>
+                <property name="kafkatype"><![CDATA[binary]]></property>
+                <property name="urlhostport"><![CDATA[GPSASDVESP01_62001]]></property>
+              </properties>
+            </connector>
+          </connectors>
+        </window-source>
+        <window-functional pubsub="true" index="pi_EMPTY" name="Functional1">
+          <schema>
+            <fields>
+              <field name="ID" type="int32" key="true"/>
+              <field name="elementindex" type="string"/>
+              <field name="element" type="string"/>
+              <field name="attribute" type="string"/>
+              <field name="value" type="string"/>
+              <field name="timestamp" type="stamp"/>
+              <field name="status" type="string"/>
+              <field name="isStandby" type="int32"/>
+            </fields>
+          </schema>
+          <function-context>
+            <functions>
+              <function name="isStandby"><![CDATA[isFailoverStandby()]]></function>
+            </functions>
+          </function-context>
+        </window-functional>
+      </windows>
+      <edges>
+        <edge source="Data_Ingestion_Publisher_Connector" target="Functional1"/>
+      </edges>
+    </contquery>
+  </contqueries>
+</project>
