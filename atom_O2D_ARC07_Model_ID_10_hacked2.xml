@@ -1,0 +1,469 @@
+<project name="atom_O2D_ARC07_Model_ID_10_hacked2" threads="1" pubsub="auto" heartbeat-interval="1">
+  <metadata>
+    <meta id="studioUploadedBy">tom.tuning@gapac.com</meta>
+    <meta id="studioUploaded">1589919551452</meta>
+    <meta id="studioModifiedBy">tom.tuning@gapac.com</meta>
+    <meta id="studioModified">1590009342586</meta>
+    <meta id="layout">{"cq1":{"Aggregate1":{"x":-80,"y":865},"Aggregate_Models_Database":{"x":890,"y":1405},"Compute_Model_Inputs":{"x":610,"y":1035},"Compute_Model_Outputs":{"x":330,"y":1405},"Data_Ingestion_Publisher_Connector":{"x":570,"y":-245},"Data_Processing_Publisher_Connector":{"x":470,"y":50},"EventCounterUID":{"x":605,"y":470},"Filter_Element":{"x":610,"y":360},"Filter_Model_Variables":{"x":615,"y":800},"Filter_On_Dependent_Variable":{"x":600,"y":1260},"Filter_standbyESP_data":{"x":585,"y":1725},"Join_Model_Output_With_DB_Properties":{"x":590,"y":1375},"Model_Properties":{"x":-270,"y":20},"Model_Subscriber_Connector_To_Alerting":{"x":330,"y":1525},"Models_Database":{"x":890,"y":1525},"Transpose1":{"x":-85,"y":715},"Transpose_Model_Inputs":{"x":610,"y":910},"Union1":{"x":-60,"y":500},"UnionInputData":{"x":655,"y":215},"Write_To_PI":{"x":585,"y":1550},"checkString":{"x":615,"y":580},"current_data":{"x":1020,"y":-105},"python_model_data":{"x":140,"y":15},"python_pi_data":{"x":50,"y":540},"removeSpacesModelProperties":{"x":-270,"y":235},"removeSpacesModelPropertiesPy":{"x":50,"y":280},"removeSpacesModels":{"x":625,"y":700},"valueToDouble":{"x":580,"y":25},"valueToDoublePython":{"x":920,"y":65}}}</meta>
+    <meta id="mm_linked_module1">6631ad66-3109-445d-b114-0b42eb63a580,e681acab-a36e-44ed-997b-ac114400997f,ds2MultiType</meta>
+    <meta id="mm_astore_module1_0">_X7M22LASYZBL12KQTEXO3XNQL,file:///models/astores/viya/_X7M22LASYZBL12KQTEXO3XNQL.astore</meta>
+  </metadata>
+  <properties>
+    <property name="PROJ_NAME"><![CDATA[O2D_ARC07_Model_ID_10_v5]]></property>
+    <property name="CQ_NAME"><![CDATA[cq1]]></property>
+    <property name="MODEL_ASSET_PATH"><![CDATA[SAS-Output\ARC-O2D7.Reactor 1 O2 Stock Ratio PV.10]]></property>
+    <property name="CURRENT_DATA_PATH"><![CDATA[Asset Types\O2 Delig\ARC-O2D7]]></property>
+    <property name="ASSET_TYPE"><![CDATA[O2D]]></property>
+    <property name="SITE"><![CDATA[ARC07]]></property>
+    <property name="MODEL_ELEMENT"><![CDATA[ARC-O2D7]]></property>
+    <property name="MODEL_ATTRIBUTE"><![CDATA[Reactor 1 O2 Stock Ratio PV]]></property>
+    <property name="MODEL_ID"><![CDATA[10]]></property>
+    <property name="MODEL_NAME"><![CDATA[ARC-O2D7.Reactor 1 O2 Stock Ratio PV.10]]></property>
+    <property name="FILTER_ELEMENTS_STRING"><![CDATA[element == "ARC-O2D7"]]></property>
+    <property name="FILTER_ATTRIBUTES_STRING"><![CDATA[attribute_mod == "Reactor_1_O2_Stock_Ratio_PV" OR attribute_mod == "Stock_Inlet_Kappa_Number_PV" OR attribute_mod == "Stock_Outlet_Kappa_Number_SP"]]></property>
+  </properties>
+  <contqueries>
+    <contquery name="cq1">
+      <windows>
+        <window-filter pubsub="true" index="pi_EMPTY" name="checkString">
+          <expression><![CDATA[isNumber(toreal(value))]]></expression>
+        </window-filter>
+        <window-compute pubsub="true" index="pi_EMPTY" name="valueToDouble">
+          <schema>
+            <fields>
+              <field name="ID" type="int32" key="true"/>
+              <field name="elementindex" type="string"/>
+              <field name="element" type="string"/>
+              <field name="attribute" type="string"/>
+              <field name="value" type="double"/>
+              <field name="timestamp" type="stamp"/>
+              <field name="status" type="string"/>
+            </fields>
+          </schema>
+          <output>
+            <field-expr><![CDATA[elementindex]]></field-expr>
+            <field-expr><![CDATA[element]]></field-expr>
+            <field-expr><![CDATA[attribute]]></field-expr>
+            <field-expr><![CDATA[value]]></field-expr>
+            <field-expr><![CDATA[timestamp]]></field-expr>
+            <field-expr><![CDATA[status]]></field-expr>
+          </output>
+        </window-compute>
+        <window-compute pubsub="true" index="pi_EMPTY" name="removeSpacesModels">
+          <description><![CDATA[Remove spaces from attribute values.]]></description>
+          <schema>
+            <fields>
+              <field name="ID" type="int32" key="true"/>
+              <field name="elementindex" type="string"/>
+              <field name="element" type="string"/>
+              <field name="attribute" type="string"/>
+              <field name="value" type="double"/>
+              <field name="timestamp" type="stamp"/>
+              <field name="status" type="string"/>
+              <field name="attribute_mod" type="string"/>
+            </fields>
+          </schema>
+          <output>
+            <field-expr><![CDATA[elementindex]]></field-expr>
+            <field-expr><![CDATA[element]]></field-expr>
+            <field-expr><![CDATA[attribute]]></field-expr>
+            <field-expr><![CDATA[value]]></field-expr>
+            <field-expr><![CDATA[timestamp]]></field-expr>
+            <field-expr><![CDATA[status]]></field-expr>
+            <field-expr><![CDATA[replace(attribute, " ", "_")]]></field-expr>
+          </output>
+        </window-compute>
+        <window-transpose name="Transpose_Model_Inputs" clear-timeout="never" pubsub="true" mode="wide" tag-name="attribute_mod" tag-values="value" tags-included="Reactor_1_O2_Stock_Ratio_PV,Stock_Inlet_Kappa_Number_PV,Stock_Outlet_Kappa_Number_SP"/>
+        <window-compute pubsub="true" index="pi_EMPTY" name="Compute_Model_Inputs">
+          <schema>
+            <fields>
+              <field name="ID" type="int32" key="true"/>
+              <field name="elementindex" type="string"/>
+              <field name="element" type="string"/>
+              <field name="attribute" type="string"/>
+              <field name="timestamp" type="stamp"/>
+              <field name="status" type="string"/>
+              <field name="Model_ID" type="int64"/>
+              <field name="Model_Name" type="string"/>
+              <field name="Reactor_1_O2_Stock_Ratio_PV" type="double"/>
+              <field name="Stock_Inlet_Kappa_Number_PV" type="double"/>
+              <field name="Stock_Outlet_Kappa_Number_SP" type="double"/>
+              <field name="EM_PREDICTION" type="double"/>
+            </fields>
+          </schema>
+          <output>
+            <field-expr><![CDATA[elementindex]]></field-expr>
+            <field-expr><![CDATA[element]]></field-expr>
+            <field-expr><![CDATA[attribute]]></field-expr>
+            <field-expr><![CDATA[timestamp]]></field-expr>
+            <field-expr><![CDATA[status]]></field-expr>
+            <field-expr><![CDATA[@MODEL_ID@]]></field-expr>
+            <field-expr><![CDATA["@MODEL_NAME@"]]></field-expr>
+            <field-expr><![CDATA[Reactor_1_O2_Stock_Ratio_PV_value]]></field-expr>
+            <field-expr><![CDATA[Stock_Inlet_Kappa_Number_PV_value]]></field-expr>
+            <field-expr><![CDATA[Stock_Outlet_Kappa_Number_SP_value]]></field-expr>
+            <field-expr><![CDATA[1]]></field-expr>
+          </output>
+        </window-compute>
+        <window-compute pubsub="true" index="pi_EMPTY" name="Write_To_PI">
+          <schema>
+            <fields>
+              <field name="ID" type="int32" key="true"/>
+              <field name="Actual_value" type="double"/>
+              <field name="Predicted_value" type="double"/>
+              <field name="LowerBound_value" type="double"/>
+              <field name="UpperBound_value" type="double"/>
+              <field name="timestamp" type="stamp"/>
+              <field name="Model_Name" type="string"/>
+              <field name="elementindex" type="string"/>
+              <field name="element" type="string"/>
+              <field name="attribute" type="string"/>
+            </fields>
+          </schema>
+          <output>
+            <field-expr><![CDATA[Reactor_1_O2_Stock_Ratio_PV]]></field-expr>
+            <field-expr><![CDATA[EM_PREDICTION]]></field-expr>
+            <field-expr><![CDATA[EM_PREDICTION-(RMSE_Lower_Multiplier*RMSE)]]></field-expr>
+            <field-expr><![CDATA[EM_PREDICTION+(RMSE_Upper_Multiplier*RMSE)]]></field-expr>
+            <field-expr><![CDATA[timestamp]]></field-expr>
+            <field-expr><![CDATA[Model_Name]]></field-expr>
+            <field-expr><![CDATA[elementindex]]></field-expr>
+            <field-expr><![CDATA[element]]></field-expr>
+            <field-expr><![CDATA[attribute]]></field-expr>
+          </output>
+          <connectors>
+            <connector class="adapter" name="Model_Subscriber_To_PI" active="false">
+              <properties>
+                <property name="type"><![CDATA[sub]]></property>
+                <property name="command"><![CDATA[dfesp_esp_adapter -C subscribeurl="dfESP://localhost:@LOCAL_HOST@/@PROJ_NAME@/cq1/Write_To_PI?snapshot=true?collapse=true"]]></property>
+                <property name="url"><![CDATA[url=dummy,publishurl="dfESP://localhost:@LOCAL_HOST@/@ASSET_TYPE@_Output_Database_v5/cq1/From_Model_To_PI"]]></property>
+              </properties>
+            </connector>
+          </connectors>
+        </window-compute>
+        <window-source pubsub="true" index="pi_EMPTY" insert-only="true" name="Data_Ingestion_Publisher_Connector">
+          <schema>
+            <fields>
+              <field name="ID" type="int32" key="true"/>
+              <field name="elementindex" type="string"/>
+              <field name="element" type="string"/>
+              <field name="attribute" type="string"/>
+              <field name="value" type="string"/>
+              <field name="timestamp" type="stamp"/>
+              <field name="status" type="string"/>
+            </fields>
+          </schema>
+          <connectors>
+            <connector class="kafka" name="kafka_IN">
+              <properties>
+                <property name="type"><![CDATA[pub]]></property>
+                <property name="dateformat"><![CDATA['%Y-%m-%d %H:%M:%S]]></property>
+                <property name="kafkainitialoffset"><![CDATA[largest]]></property>
+                <property name="kafkaglobalconfig"><![CDATA[enable.sparse.connections=false;security.protocol=SSL]]></property>
+                <property name="useoffsetmsgid"><![CDATA[true]]></property>
+                <property name="kafkahostport"><![CDATA[b-2.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:9094]]></property>
+                <property name="kafkapartition"><![CDATA[0]]></property>
+                <property name="kafkatopic"><![CDATA[GPSASDVESP01_62001.datainjestion.cq1.kafka_outgoing.O]]></property>
+                <property name="kafkatype"><![CDATA[binary]]></property>
+                <property name="urlhostport"><![CDATA[GPSASDVESP01_62001]]></property>
+              </properties>
+            </connector>
+            <connector class="fs" name="testinput" active="false">
+              <properties>
+                <property name="type"><![CDATA[sub]]></property>
+                <property name="snapshot"><![CDATA[false]]></property>
+                <property name="fsname"><![CDATA[e:\atom_testoutput\injest.csv]]></property>
+                <property name="fstype"><![CDATA[csv]]></property>
+              </properties>
+            </connector>
+          </connectors>
+        </window-source>
+        <window-compute pubsub="true" index="pi_EMPTY" name="valueToDoublePython">
+          <schema>
+            <fields>
+              <field name="ID" type="int32" key="true"/>
+              <field name="elementindex" type="string"/>
+              <field name="element" type="string"/>
+              <field name="attribute" type="string"/>
+              <field name="value" type="double"/>
+              <field name="timestamp" type="stamp"/>
+              <field name="status" type="string"/>
+            </fields>
+          </schema>
+          <output>
+            <field-expr><![CDATA[""]]></field-expr>
+            <field-expr><![CDATA[element]]></field-expr>
+            <field-expr><![CDATA[attribute]]></field-expr>
+            <field-expr><![CDATA[value]]></field-expr>
+            <field-expr><![CDATA[timestamp]]></field-expr>
+            <field-expr><![CDATA[""]]></field-expr>
+          </output>
+        </window-compute>
+        <window-union pubsub="true" strict="true" index="pi_EMPTY" name="UnionInputData"/>
+        <window-functional pubsub="true" index="pi_EMPTY" name="EventCounterUID">
+          <schema>
+            <fields>
+              <field name="ID" type="int32" key="true"/>
+              <field name="elementindex" type="string"/>
+              <field name="element" type="string"/>
+              <field name="attribute" type="string"/>
+              <field name="value" type="string"/>
+              <field name="timestamp" type="stamp"/>
+              <field name="status" type="string"/>
+            </fields>
+          </schema>
+          <function-context>
+            <functions>
+              <function name="ID"><![CDATA[eventCounter()]]></function>
+            </functions>
+          </function-context>
+        </window-functional>
+        <window-filter pubsub="true" index="pi_EMPTY" name="Filter_Element">
+          <expression><![CDATA[@FILTER_ELEMENTS_STRING@]]></expression>
+        </window-filter>
+        <window-join pubsub="true" index="pi_EMPTY" name="Join_Model_Output_With_DB_Properties">
+          <join type="leftouter" no-regenerates="true">
+            <conditions>
+              <fields left="Model_Name" right="element"/>
+            </conditions>
+          </join>
+          <output>
+            <field-selection name="timestamp" source="l_timestamp"/>
+            <field-selection name="status" source="l_status"/>
+            <field-selection name="EM_PREDICTION" source="l_EM_PREDICTION"/>
+            <field-selection name="Model_ID" source="l_Model_ID"/>
+            <field-selection name="Model_Enabled" source="r_Model_Enabled"/>
+            <field-selection name="RMSE" source="r_RMSE"/>
+            <field-selection name="RMSE_Lower_Multiplier" source="r_RMSE_Lower_Multiplier"/>
+            <field-selection name="RMSE_Upper_Multiplier" source="r_RMSE_Upper_Multiplier"/>
+            <field-selection name="Model_Name" source="l_Model_Name"/>
+            <field-selection name="elementindex" source="l_elementindex"/>
+            <field-selection name="element" source="l_element"/>
+            <field-selection name="attribute" source="l_attribute"/>
+            <field-selection name="Reactor_1_O2_Stock_Ratio_PV" source="l_Reactor_1_O2_Stock_Ratio_PV"/>
+            <field-selection name="Stock_Inlet_Kappa_Number_PV" source="l_Stock_Inlet_Kappa_Number_PV"/>
+            <field-selection name="Stock_Outlet_Kappa_Number_SP" source="l_Stock_Outlet_Kappa_Number_SP"/>
+          </output>
+        </window-join>
+        <window-source pubsub="true" index="pi_EMPTY" insert-only="true" name="python_model_data">
+          <schema>
+            <fields>
+              <field name="ID" type="int32" key="true"/>
+              <field name="element" type="string" key="true"/>
+              <field name="attribute" type="string"/>
+              <field name="value" type="string"/>
+              <field name="timestamp" type="stamp"/>
+              <field name="tag_name" type="string"/>
+              <field name="step" type="string"/>
+            </fields>
+          </schema>
+          <connectors>
+            <connector class="adapter" name="python_connector">
+              <properties>
+                <property name="type"><![CDATA[pub]]></property>
+                <property name="command"><![CDATA[activate.bat esp_pub && python E:\esp_pub\esp_pi_publisher_test.py "dfESP://localhost:@LOCAL_HOST@" "@PROJ_NAME@" "@CQ_NAME@" "python_model_data" "@MODEL_ASSET_PATH@" "@SERVER_DATABASE@"]]></property>
+              </properties>
+            </connector>
+          </connectors>
+        </window-source>
+        <window-transpose name="Transpose1" clear-timeout="never" pubsub="true" mode="wide" tag-name="attribute_mod" tag-values="value" tags-included="Model_Enabled,RMSE,RMSE_Lower_Multiplier,RMSE_Upper_Multiplier"/>
+        <window-compute pubsub="true" index="pi_EMPTY" name="removeSpacesModelPropertiesPy">
+          <description><![CDATA[Remove spaces from attribute values.]]></description>
+          <schema>
+            <fields>
+              <field name="element" type="string" key="true"/>
+              <field name="attribute" type="string"/>
+              <field name="value" type="double"/>
+              <field name="timestamp" type="stamp"/>
+              <field name="attribute_mod" type="string"/>
+            </fields>
+          </schema>
+          <output>
+            <field-expr><![CDATA[attribute]]></field-expr>
+            <field-expr><![CDATA[value]]></field-expr>
+            <field-expr><![CDATA[timestamp]]></field-expr>
+            <field-expr><![CDATA[replace(attribute, " ", "_")]]></field-expr>
+          </output>
+        </window-compute>
+        <window-source pubsub="true" index="pi_EMPTY" insert-only="true" name="Model_Properties">
+          <schema>
+            <fields>
+              <field name="ID" type="int32" key="true"/>
+              <field name="elementindex" type="string"/>
+              <field name="element" type="string" key="true"/>
+              <field name="attribute" type="string"/>
+              <field name="value" type="string"/>
+              <field name="timestamp" type="stamp"/>
+              <field name="status" type="string"/>
+            </fields>
+          </schema>
+          <connectors>
+            <connector class="pi" name="New_Connector_1">
+              <properties>
+                <property name="type"><![CDATA[pub]]></property>
+                <property name="pisystem"><![CDATA[@PI_SYSTEM@]]></property>
+                <property name="afdatabase"><![CDATA[@AF_DATABASE@]]></property>
+                <property name="afrootelement"><![CDATA[@MODEL_ASSET_PATH@]]></property>
+                <property name="afattribute"><![CDATA[Model Enabled]]></property>
+                <property name="allvaluestostrings"><![CDATA[true]]></property>
+                <property name="afelement"><![CDATA[*]]></property>
+                <property name="iselementtemplate"><![CDATA[false]]></property>
+              </properties>
+            </connector>
+            <connector class="pi" name="New_Connector_2">
+              <properties>
+                <property name="type"><![CDATA[pub]]></property>
+                <property name="pisystem"><![CDATA[@PI_SYSTEM@]]></property>
+                <property name="afdatabase"><![CDATA[@AF_DATABASE@]]></property>
+                <property name="afrootelement"><![CDATA[@MODEL_ASSET_PATH@]]></property>
+                <property name="afattribute"><![CDATA[RMSE]]></property>
+                <property name="allvaluestostrings"><![CDATA[true]]></property>
+                <property name="afelement"><![CDATA[*]]></property>
+                <property name="iselementtemplate"><![CDATA[false]]></property>
+              </properties>
+            </connector>
+            <connector class="pi" name="New_Connector_3">
+              <properties>
+                <property name="type"><![CDATA[pub]]></property>
+                <property name="pisystem"><![CDATA[@PI_SYSTEM@]]></property>
+                <property name="afdatabase"><![CDATA[@AF_DATABASE@]]></property>
+                <property name="afrootelement"><![CDATA[@MODEL_ASSET_PATH@]]></property>
+                <property name="afattribute"><![CDATA[RMSE Lower Multiplier]]></property>
+                <property name="allvaluestostrings"><![CDATA[true]]></property>
+                <property name="afelement"><![CDATA[*]]></property>
+                <property name="iselementtemplate"><![CDATA[false]]></property>
+              </properties>
+            </connector>
+            <connector class="pi" name="New_Connector_4">
+              <properties>
+                <property name="type"><![CDATA[pub]]></property>
+                <property name="pisystem"><![CDATA[@PI_SYSTEM@]]></property>
+                <property name="afdatabase"><![CDATA[@AF_DATABASE@]]></property>
+                <property name="afrootelement"><![CDATA[@MODEL_ASSET_PATH@]]></property>
+                <property name="afattribute"><![CDATA[RMSE Upper Multiplier]]></property>
+                <property name="allvaluestostrings"><![CDATA[true]]></property>
+                <property name="afelement"><![CDATA[*]]></property>
+                <property name="iselementtemplate"><![CDATA[false]]></property>
+              </properties>
+            </connector>
+          </connectors>
+        </window-source>
+        <window-compute pubsub="true" index="pi_EMPTY" name="removeSpacesModelProperties">
+          <description><![CDATA[Remove spaces from attribute values.]]></description>
+          <schema>
+            <fields>
+              <field name="element" type="string" key="true"/>
+              <field name="attribute" type="string"/>
+              <field name="value" type="double"/>
+              <field name="timestamp" type="stamp"/>
+              <field name="attribute_mod" type="string"/>
+            </fields>
+          </schema>
+          <output>
+            <field-expr><![CDATA[attribute]]></field-expr>
+            <field-expr><![CDATA[value]]></field-expr>
+            <field-expr><![CDATA[timestamp]]></field-expr>
+            <field-expr><![CDATA[replace(attribute, " ", "_")]]></field-expr>
+          </output>
+        </window-compute>
+        <window-union pubsub="true" strict="true" index="pi_EMPTY" name="Union1"/>
+        <window-aggregate pubsub="true" name="Aggregate1">
+          <schema>
+            <fields>
+              <field name="element" type="string" key="true"/>
+              <field name="Model_Enabled" type="double"/>
+              <field name="RMSE" type="double"/>
+              <field name="RMSE_Lower_Multiplier" type="double"/>
+              <field name="RMSE_Upper_Multiplier" type="double"/>
+              <field name="attribute" type="string"/>
+              <field name="timestamp" type="stamp"/>
+            </fields>
+          </schema>
+          <output>
+            <field-expr><![CDATA[ESP_aLast(Model_Enabled_value)]]></field-expr>
+            <field-expr><![CDATA[ESP_aLast(RMSE_value)]]></field-expr>
+            <field-expr><![CDATA[ESP_aLast(RMSE_Lower_Multiplier_value)]]></field-expr>
+            <field-expr><![CDATA[ESP_aLast(RMSE_Upper_Multiplier_value)]]></field-expr>
+            <field-expr><![CDATA[ESP_aLast(attribute)]]></field-expr>
+            <field-expr><![CDATA[ESP_aLast(timestamp)]]></field-expr>
+          </output>
+        </window-aggregate>
+        <window-filter pubsub="true" index="pi_EMPTY" name="Filter_On_Dependent_Variable">
+          <expression><![CDATA[attribute == "@MODEL_ATTRIBUTE@"]]></expression>
+        </window-filter>
+        <window-filter pubsub="true" index="pi_EMPTY" name="Filter_Model_Variables">
+          <expression><![CDATA[@FILTER_ATTRIBUTES_STRING@]]></expression>
+        </window-filter>
+        <window-source pubsub="true" index="pi_EMPTY" insert-only="true" name="current_data">
+          <schema>
+            <fields>
+              <field name="ID" type="int32" key="true"/>
+              <field name="element" type="string" key="true"/>
+              <field name="attribute" type="string"/>
+              <field name="value" type="string"/>
+              <field name="timestamp" type="stamp"/>
+              <field name="tag_name" type="string"/>
+              <field name="step" type="string"/>
+            </fields>
+          </schema>
+          <connectors>
+            <connector class="adapter" name="py_connector">
+              <properties>
+                <property name="type"><![CDATA[pub]]></property>
+                <property name="command"><![CDATA[activate.bat esp_pub && python E:\esp_pub\esp_pi_publisher_test.py "dfESP://localhost:@LOCAL_HOST@" "@PROJ_NAME@" "@CQ_NAME@" "current_data" "@CURRENT_DATA_PATH@" "@SERVER_DATABASE@"]]></property>
+              </properties>
+            </connector>
+          </connectors>
+        </window-source>
+        <window-functional pubsub="true" index="pi_EMPTY" name="Filter_standbyESP_data">
+          <description><![CDATA[If ESP server is in standby mode, do not output messages to Pi.]]></description>
+          <schema>
+            <fields>
+              <field name="ID" type="int32" key="true"/>
+              <field name="Actual_value" type="double"/>
+              <field name="Predicted_value" type="double"/>
+              <field name="LowerBound_value" type="double"/>
+              <field name="UpperBound_value" type="double"/>
+              <field name="timestamp" type="stamp"/>
+              <field name="Model_Name" type="string"/>
+              <field name="elementindex" type="string"/>
+              <field name="element" type="string"/>
+              <field name="attribute" type="string"/>
+              <field name="isStandby" type="int32"/>
+            </fields>
+          </schema>
+          <function-context>
+            <functions>
+              <function name="isStandby"><![CDATA[isFailoverStandby()]]></function>
+            </functions>
+          </function-context>
+          <generate><![CDATA[not(isFailoverStandby())]]></generate>
+        </window-functional>
+      </windows>
+      <edges>
+        <edge source="Transpose_Model_Inputs" target="Compute_Model_Inputs"/>
+        <edge source="Data_Ingestion_Publisher_Connector" target="valueToDouble"/>
+        <edge source="checkString" target="removeSpacesModels"/>
+        <edge source="valueToDouble" target="UnionInputData"/>
+        <edge source="valueToDoublePython" target="UnionInputData"/>
+        <edge source="EventCounterUID" target="checkString"/>
+        <edge source="UnionInputData" target="Filter_Element"/>
+        <edge source="Filter_Element" target="EventCounterUID"/>
+        <edge source="python_model_data" target="removeSpacesModelPropertiesPy"/>
+        <edge source="Model_Properties" target="removeSpacesModelProperties"/>
+        <edge source="removeSpacesModelPropertiesPy" target="Union1"/>
+        <edge source="removeSpacesModelProperties" target="Union1"/>
+        <edge source="Union1" target="Transpose1"/>
+        <edge source="Transpose1" target="Aggregate1"/>
+        <edge source="Filter_On_Dependent_Variable" target="Join_Model_Output_With_DB_Properties" role="left"/>
+        <edge source="Aggregate1" target="Join_Model_Output_With_DB_Properties" role="right"/>
+        <edge source="removeSpacesModels" target="Filter_Model_Variables"/>
+        <edge source="Filter_Model_Variables" target="Transpose_Model_Inputs"/>
+        <edge source="current_data" target="valueToDoublePython"/>
+        <edge source="Write_To_PI" target="Filter_standbyESP_data"/>
+        <edge source="Compute_Model_Inputs" target="Filter_On_Dependent_Variable"/>
+        <edge source="Join_Model_Output_With_DB_Properties" target="Write_To_PI"/>
+      </edges>
+    </contquery>
+  </contqueries>
+</project>
