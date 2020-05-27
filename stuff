@@ -44,3 +44,10 @@ aws kafka get-bootstrap-brokers --region us-east-1 --cluster-arn "arn:aws:kafka:
 
 sh kafka-console-producer.sh --broker-list b-1.mykafkatestcluster.pa2z1v.c5.kafka.us-east-1.amazonaws.com:9094 --producer.config client.properties --topic AWSKafkaTutorialTopic
 sh kafka-console-consumer.sh --bootstrap-server b-1.mykafkatestcluster.pa2z1v.c5.kafka.us-east-1.amazonaws.com:9094 --consumer.config client.properties --topic AWSKafkaTutorialTopic --from-beginning
+
+
+
+000052
+2020-05-27T19:49:18,563; INFO ; 00000016; DF.ESP; (dfESPkafkaConnector.cpp:2789); {aca2caf0-50ec-41df-ab4e-57790258ac9f}[Connectors0050] setLastMsgId(): Standby taking over, last message id = 2814749767107964
+2020-05-27T19:51:45,848; INFO ; 00000015; DF.ESP; (dfESPkafkaConnector.cpp:753); {aca2caf0-50ec-41df-ab4e-57790258ac9f}[Connectors0052] dfESPkafkaConnector::sendSerializedBlock(): Standby synced, current message id = 2814749767107964
+2020-05-27T19:51:45,848; WARN ; 00000015; DF.ESP; (dfESPkafkaConnector.cpp:954); {aca2caf0-50ec-41df-ab4e-57790258ac9f}[Connectors0049] dfESPkafkaConnector::goActive(): Hot failover state switched to active
