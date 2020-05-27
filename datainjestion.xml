@@ -35,7 +35,7 @@
                 <property name="type"><![CDATA[pub]]></property>
                 <property name="dateformat"><![CDATA['%Y-%m-%d %H:%M:%S]]></property>
                 <property name="kafkainitialoffset"><![CDATA[largest]]></property>
-                <property name="kafkaglobalconfig"><![CDATA[enable.sparse.connections=false;security.protocol=SSL;client.id="esp;colon"]]></property>
+                <property name="kafkaglobalconfig"><![CDATA[enable.sparse.connections=false;security.protocol=SSL]]></property>
                 <property name="useoffsetmsgid"><![CDATA[true]]></property>
                 <property name="kafkahostport"><![CDATA[b-2.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:9094]]></property>
                 <property name="kafkapartition"><![CDATA[0]]></property>
