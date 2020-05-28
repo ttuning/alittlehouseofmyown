@@ -440,7 +440,7 @@
           </function-context>
         </window-functional>
         <window-filter pubsub="true" index="pi_EMPTY" name="Filter_Standby_msgs">
-          <expression><![CDATA[isStandby = 1]]></expression>
+          <expression><![CDATA[isStandby == 1]]></expression>
         </window-filter>
       </windows>
       <edges>
