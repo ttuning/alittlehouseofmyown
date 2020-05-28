@@ -51,3 +51,12 @@ sh kafka-console-consumer.sh --bootstrap-server b-1.mykafkatestcluster.pa2z1v.c5
 2020-05-27T19:49:18,563; INFO ; 00000016; DF.ESP; (dfESPkafkaConnector.cpp:2789); {aca2caf0-50ec-41df-ab4e-57790258ac9f}[Connectors0050] setLastMsgId(): Standby taking over, last message id = 2814749767107964
 2020-05-27T19:51:45,848; INFO ; 00000015; DF.ESP; (dfESPkafkaConnector.cpp:753); {aca2caf0-50ec-41df-ab4e-57790258ac9f}[Connectors0052] dfESPkafkaConnector::sendSerializedBlock(): Standby synced, current message id = 2814749767107964
 2020-05-27T19:51:45,848; WARN ; 00000015; DF.ESP; (dfESPkafkaConnector.cpp:954); {aca2caf0-50ec-41df-ab4e-57790258ac9f}[Connectors0049] dfESPkafkaConnector::goActive(): Hot failover state switched to active
+
+
+2020-05-28T14:00:45,107; INFO ; 00000024; common.http; (Http.cpp:970); {3394e5a8-1551-403d-93d6-4d3e4c206869}[XMLServer0001] starting HTTP server on port 62000, type=admin
+2020-05-28T14:02:50,533; INFO ; 00000596; DF.ESP; (dfESPkafkaConnector.cpp:307); {3394e5a8-1551-403d-93d6-4d3e4c206869}[Connectors0098] dfESPkafkaConnector::z_watcher(): Zookeeper watcher event: watcher = DELETED_EVENT, state = CONNECTED_STATE, path = /ESP/server-n_0000000057
+2020-05-28T14:02:51,562; INFO ; 00000016; DF.ESP; (dfESPkafkaConnector.cpp:2789); {3394e5a8-1551-403d-93d6-4d3e4c206869}[Connectors0050] setLastMsgId(): Standby taking over, last message id = 2814749767106845
+2020-05-28T14:02:51,618; INFO ; 00000015; DF.ESP; (dfESPkafkaConnector.cpp:712); {3394e5a8-1551-403d-93d6-4d3e4c206869}[Connectors0051] dfESPkafkaConnector::sendSerializedBlock(): Standby sending buffered messages, last message id = 2814749767106845, current message id = 2814749767106858
+2020-05-28T14:02:51,618; ERROR; 00000015; DF.ESP; (dfESPkafkaConnector.cpp:716); {3394e5a8-1551-403d-93d6-4d3e4c206869}[Connectors0046] dfESPkafkaConnector::sendSerializedBlock(): Could not find buffered message, id = 2814749767106846
+2020-05-28T14:02:52,729; INFO ; 00000016; DF.ESP; (dfESPkafkaConnector.cpp:2789); {3394e5a8-1551-403d-93d6-4d3e4c206869}[Connectors0050] setLastMsgId(): Standby taking over, last message id = 2814749767106845
+2020-05-28T14:02:52,729; INFO ; 00000015; DF.ESP; (dfESPconnector.cpp:1444); {3394e5a8-1551-403d-93d6-4d3e4c206869}[Connectors0087] dfESPconnector::setState(): Connector kafka_OUT in group default has new state: stopped
