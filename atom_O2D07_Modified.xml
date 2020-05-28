@@ -223,7 +223,7 @@
           <expression><![CDATA[@FILTER_ELEMENTS_STRING@]]></expression>
         </window-filter>
         <window-join pubsub="true" index="pi_EMPTY" name="Join_Model_Output_With_DB_Properties">
-          <join type="leftouter" no-regenerates="false">
+          <join type="leftouter" no-regenerates="false" use-secondary-index="true">
             <conditions>
               <fields left="Model_Name" right="element"/>
             </conditions>
