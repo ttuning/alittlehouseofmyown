@@ -1,1 +1,1 @@
-"C:\Program Files\SAS\Viya\SASEventStreamProcessingEngine\6.2\bin\dfesp_xml_client.exe"  -url "http://gpsasqaesp01:62001/SASESP/projects/project" -put file://c:\users\tomt1\alittlehouseofmyown\datainjestion.xml 
+"C:\Program Files\SAS\Viya\SASEventStreamProcessingEngine\6.2\bin\dfesp_xml_client.exe"  -url "http://gpsasqaesp01:62001/SASESP/projects/project" -put file://c:\users\tomt1\alittlehouseofmyown\atom_O2D07_Modified.xml 
