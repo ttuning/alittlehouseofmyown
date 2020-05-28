@@ -24,7 +24,7 @@
     <property name="FILTER_ATTRIBUTES_STRING"><![CDATA[attribute_mod == "Reactor_1_O2_Stock_Ratio_PV" OR attribute_mod == "Stock_Inlet_Kappa_Number_PV" OR attribute_mod == "Stock_Outlet_Kappa_Number_SP"]]></property>
   </properties>
   <contqueries>
-    <contquery name="cq1">
+    <contquery name="cq1" trace="Set_isStandby_variable">
       <windows>
         <window-filter pubsub="true" index="pi_EMPTY" name="checkString">
           <expression><![CDATA[isNumber(toreal(value))]]></expression>
