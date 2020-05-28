@@ -80,7 +80,7 @@
                 <property name="kafkatopic"><![CDATA[GPSASDVESP01_62001.datainjestion.cq1.kafka_outgoing.O]]></property>
                 <property name="kafkatype"><![CDATA[binary]]></property>
                 <property name="urlhostport"><![CDATA[GPSASDVESP01_62001]]></property>
-                <property name="numbufferedmsgs"><![CDATA[10]]></property>
+                <property name="numbufferedmsgs"><![CDATA[1000]]></property>
               </properties>
             </connector>
           </connectors>
