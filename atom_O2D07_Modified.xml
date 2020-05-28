@@ -389,7 +389,7 @@
             <field-expr><![CDATA[ESP_aLast(timestamp)]]></field-expr>
           </output>
         </window-aggregate>
-        <window-filter pubsub="true" index="pi_EMPTY" name="Filter_On_Dependent_Variable">
+        <window-filter pubsub="true" index="pi_EMPTY" output-insert-only="true" name="Filter_On_Dependent_Variable">
           <expression><![CDATA[attribute == "@MODEL_ATTRIBUTE@"]]></expression>
         </window-filter>
         <window-filter pubsub="true" index="pi_EMPTY" name="Filter_Model_Variables">
