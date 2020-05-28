@@ -368,7 +368,7 @@
           </output>
         </window-compute>
         <window-union pubsub="true" strict="true" index="pi_EMPTY" name="Union1"/>
-        <window-aggregate pubsub="true" name="Aggregate1">
+        <window-aggregate pubsub="true" output-insert-only="true" name="Aggregate1">
           <schema>
             <fields>
               <field name="element" type="string" key="true"/>
