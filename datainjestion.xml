@@ -74,6 +74,7 @@
                 <property name="hotfailover"><![CDATA[true]]></property>
                 <property name="zookeeperhostport"><![CDATA[ z-1.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:2181]]></property>
                 <property name="kafkaglobalconfig"><![CDATA[enable.sparse.connections=false;security.protocol=SSL]]></property>
+                <property name="useoffsetmsgid"><![CDATA[true]]></property>
                 <property name="snapshot"><![CDATA[false]]></property>
                 <property name="kafkahostport"><![CDATA[b-2.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:9094]]></property>
                 <property name="kafkapartition"><![CDATA[0]]></property>
