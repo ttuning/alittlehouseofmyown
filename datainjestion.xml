@@ -15,7 +15,8 @@
     <property name="ASSET_PATH"><![CDATA[Process\RecaustArea\LRC-RECAUST01, Asset Types\Lime Kiln\LRC-LMK01, Asset Types\Slaker\LRC-SLKR01, Asset Types\Mud Filter\LRC-MF01]]></property>
   </properties>
   <contqueries>
-    <contquery name="cq1" trace="Data_Ingestion_Subscriber_Connector">
+    <!-- contquery name="cq1" trace="Data_Ingestion_Subscriber_Connector" -->
+    <contquery name="cq1" >  
       <windows>
         <window-source pubsub="true" index="pi_EMPTY" insert-only="true" name="kafka_incoming">
           <schema>
