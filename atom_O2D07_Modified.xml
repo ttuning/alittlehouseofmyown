@@ -2,10 +2,10 @@
   <description><![CDATA[Modified version of O2D_ARC07 for HA testing.]]></description>
   <metadata>
     <meta id="studioUploadedBy">tom.tuning@gapac.com</meta>
-    <meta id="studioUploaded">1590687812475</meta>
+    <meta id="studioUploaded">1590695667947</meta>
     <meta id="studioModifiedBy">tom.tuning@gapac.com</meta>
-    <meta id="studioModified">1590690327549</meta>
-    <meta id="layout">{"cq1":{"Aggregate1":{"x":-80,"y":865},"Aggregate_Models_Database":{"x":890,"y":1405},"Compute_Model_Inputs":{"x":610,"y":1035},"Compute_Model_Outputs":{"x":330,"y":1405},"Data_Ingestion_Publisher_Connector":{"x":570,"y":-245},"Data_Processing_Publisher_Connector":{"x":470,"y":50},"EventCounterUID":{"x":605,"y":470},"Filter_Element":{"x":610,"y":360},"Filter_Model_Variables":{"x":615,"y":800},"Filter_On_Dependent_Variable":{"x":600,"y":1260},"Filter_Standby_msgs":{"x":595,"y":1870},"Join_Model_Output_With_DB_Properties":{"x":590,"y":1375},"Model_Properties":{"x":-270,"y":20},"Model_Subscriber_Connector_To_Alerting":{"x":330,"y":1525},"Models_Database":{"x":890,"y":1525},"Set_isStandby_variable":{"x":585,"y":1725},"Transpose1":{"x":-85,"y":715},"Transpose_Model_Inputs":{"x":610,"y":910},"Union1":{"x":-60,"y":500},"UnionInputData":{"x":655,"y":215},"Write_To_PI":{"x":585,"y":1550},"checkString":{"x":615,"y":580},"current_data":{"x":1020,"y":-105},"python_model_data":{"x":140,"y":15},"python_pi_data":{"x":50,"y":540},"removeSpacesModelProperties":{"x":-270,"y":235},"removeSpacesModelPropertiesPy":{"x":50,"y":280},"removeSpacesModels":{"x":625,"y":700},"valueToDouble":{"x":580,"y":25},"valueToDoublePython":{"x":920,"y":65}}}</meta>
+    <meta id="studioModified">1590697385227</meta>
+    <meta id="layout">{"cq1":{"Aggregate1":{"x":-80,"y":865},"Aggregate_Models_Database":{"x":890,"y":1405},"Compute_Model_Inputs":{"x":610,"y":1035},"Compute_Model_Outputs":{"x":330,"y":1405},"Data_Ingestion_Publisher_Connector":{"x":570,"y":-245},"Data_Processing_Publisher_Connector":{"x":470,"y":50},"EventCounterUID":{"x":605,"y":470},"Filter_Element":{"x":610,"y":360},"Filter_Model_Variables":{"x":615,"y":800},"Filter_On_Dependent_Variable":{"x":600,"y":1260},"Join_Model_Output_With_DB_Properties":{"x":590,"y":1375},"Model_Properties":{"x":-270,"y":20},"Model_Subscriber_Connector_To_Alerting":{"x":330,"y":1525},"Models_Database":{"x":890,"y":1525},"Set_isStandby_variable":{"x":585,"y":1725},"Transpose1":{"x":-85,"y":715},"Transpose_Model_Inputs":{"x":610,"y":910},"Union1":{"x":-60,"y":500},"UnionInputData":{"x":655,"y":215},"Write_To_PI":{"x":585,"y":1550},"checkString":{"x":615,"y":580},"current_data":{"x":1020,"y":-105},"python_model_data":{"x":140,"y":15},"python_pi_data":{"x":50,"y":540},"removeSpacesModelProperties":{"x":-270,"y":235},"removeSpacesModelPropertiesPy":{"x":50,"y":280},"removeSpacesModels":{"x":625,"y":700},"valueToDouble":{"x":580,"y":25},"valueToDoublePython":{"x":920,"y":65}}}</meta>
     <meta id="mm_linked_module1">6631ad66-3109-445d-b114-0b42eb63a580,e681acab-a36e-44ed-997b-ac114400997f,ds2MultiType</meta>
     <meta id="mm_astore_module1_0">_X7M22LASYZBL12KQTEXO3XNQL,file:///models/astores/viya/_X7M22LASYZBL12KQTEXO3XNQL.astore</meta>
   </metadata>
@@ -259,7 +259,7 @@
             </fields>
           </schema>
           <connectors>
-            <connector class="adapter" name="python_connector">
+            <connector class="adapter" name="python_connector" active="false">
               <properties>
                 <property name="type"><![CDATA[pub]]></property>
                 <property name="command"><![CDATA[activate.bat esp_pub && python E:\esp_pub\esp_pi_publisher_test.py "dfESP://localhost:@LOCAL_HOST@" "@PROJ_NAME@" "@CQ_NAME@" "python_model_data" "@MODEL_ASSET_PATH@" "@SERVER_DATABASE@"]]></property>
@@ -299,7 +299,7 @@
             </fields>
           </schema>
           <connectors>
-            <connector class="pi" name="New_Connector_1">
+            <connector class="pi" name="New_Connector_1" active="false">
               <properties>
                 <property name="type"><![CDATA[pub]]></property>
                 <property name="pisystem"><![CDATA[@PI_SYSTEM@]]></property>
@@ -311,7 +311,7 @@
                 <property name="iselementtemplate"><![CDATA[false]]></property>
               </properties>
             </connector>
-            <connector class="pi" name="New_Connector_2">
+            <connector class="pi" name="New_Connector_2" active="false">
               <properties>
                 <property name="type"><![CDATA[pub]]></property>
                 <property name="pisystem"><![CDATA[@PI_SYSTEM@]]></property>
@@ -323,7 +323,7 @@
                 <property name="iselementtemplate"><![CDATA[false]]></property>
               </properties>
             </connector>
-            <connector class="pi" name="New_Connector_3">
+            <connector class="pi" name="New_Connector_3" active="false">
               <properties>
                 <property name="type"><![CDATA[pub]]></property>
                 <property name="pisystem"><![CDATA[@PI_SYSTEM@]]></property>
@@ -335,7 +335,7 @@
                 <property name="iselementtemplate"><![CDATA[false]]></property>
               </properties>
             </connector>
-            <connector class="pi" name="New_Connector_4">
+            <connector class="pi" name="New_Connector_4" active="false">
               <properties>
                 <property name="type"><![CDATA[pub]]></property>
                 <property name="pisystem"><![CDATA[@PI_SYSTEM@]]></property>
@@ -408,7 +408,7 @@
             </fields>
           </schema>
           <connectors>
-            <connector class="adapter" name="py_connector">
+            <connector class="adapter" name="py_connector" active="false">
               <properties>
                 <property name="type"><![CDATA[pub]]></property>
                 <property name="command"><![CDATA[activate.bat esp_pub && python E:\esp_pub\esp_pi_publisher_test.py "dfESP://localhost:@LOCAL_HOST@" "@PROJ_NAME@" "@CQ_NAME@" "current_data" "@CURRENT_DATA_PATH@" "@SERVER_DATABASE@"]]></property>
@@ -439,9 +439,6 @@
             </functions>
           </function-context>
         </window-functional>
-        <window-filter pubsub="true" index="pi_EMPTY" output-insert-only="true" name="Filter_Standby_msgs">
-          <expression><![CDATA[isStandby == 1]]></expression>
-        </window-filter>
       </windows>
       <edges>
         <edge source="Transpose_Model_Inputs" target="Compute_Model_Inputs"/>
@@ -466,7 +463,6 @@
         <edge source="Write_To_PI" target="Set_isStandby_variable"/>
         <edge source="Compute_Model_Inputs" target="Filter_On_Dependent_Variable"/>
         <edge source="Join_Model_Output_With_DB_Properties" target="Write_To_PI"/>
-        <edge source="Set_isStandby_variable" target="Filter_Standby_msgs"/>
       </edges>
     </contquery>
   </contqueries>
