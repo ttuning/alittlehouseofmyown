@@ -25,6 +25,10 @@ Create Topic:
 sh kafka-topics.sh --create --zookeeper z-3.mykafkatestcluster.pa2z1v.c5.kafka.us-east-1.amazonaws.com:2181 --replication-factor 3 --partitions 1 --topic AWSKafkaTutorialTopic
 z-1.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:2181 
 
+
+
+
+
 Setup Java Trust Store for MSK:
 -------------------------------
 
@@ -60,3 +64,13 @@ sh kafka-console-consumer.sh --bootstrap-server b-1.mykafkatestcluster.pa2z1v.c5
 2020-05-28T14:02:51,618; ERROR; 00000015; DF.ESP; (dfESPkafkaConnector.cpp:716); {3394e5a8-1551-403d-93d6-4d3e4c206869}[Connectors0046] dfESPkafkaConnector::sendSerializedBlock(): Could not find buffered message, id = 2814749767106846
 2020-05-28T14:02:52,729; INFO ; 00000016; DF.ESP; (dfESPkafkaConnector.cpp:2789); {3394e5a8-1551-403d-93d6-4d3e4c206869}[Connectors0050] setLastMsgId(): Standby taking over, last message id = 2814749767106845
 2020-05-28T14:02:52,729; INFO ; 00000015; DF.ESP; (dfESPconnector.cpp:1444); {3394e5a8-1551-403d-93d6-4d3e4c206869}[Connectors0087] dfESPconnector::setState(): Connector kafka_OUT in group default has new state: stopped
+
+
+
+r event: watcher = SESSION_EVENT, state = EXPIRED_SESSION_STATE, path =
+2020-05-29T15:29:42,435; ERROR; 00029157; DF.ESP; (dfESPkafkaConnector.cpp:355); {a9abb76d-4237-4ee8-ac91-2eec43c83ca6}[Connectors0032] dfESPkafkaConnector::z_watcher(): Bad zookeeper state, EXPIRED_SESSION_STATE
+2020-05-29T15:29:42,435; INFO ; 00000067; DF.ESP; (dfESPconnector.cpp:1444); {a9abb76d-4237-4ee8-ac91-2eec43c83ca6}[Connectors0087] dfESPconnector::setState(): Connector kafka_OUT in group default has new state: stopped
+2020-05-29T15:29:42,435; INFO ; 00000072; DF.ESP; (dfESPconnector.cpp:1444); {a9abb76d-4237-4ee8-ac91-2eec43c83ca6}[Connectors0087] dfESPconnector::setState(): Connector kafka_IN in group default has new state: stopped
+2020-05-29T15:29:42,435; INFO ; 00019873; DF.ESP; (dfESPconnector.cpp:1444); {a9abb76d-4237-4ee8-ac91-2eec43c83ca6}[Connectors0087] dfESPconnector::setState(): Connector kafka_IN in group default has new state: stopped
+2020-05-29T15:34:42,581; INFO ; 00029158; DF.ESP; (dfESPkafkaConnector.cpp:3133); {a9abb76d-4237-4ee8-ac91-2eec43c83ca6}[Connectors0095] dfESPkafkaConnector::event_cb(): RdKafka event callback: type = EVENT_LOG, message = 4-MAXPOLL: [thrd:main]: Application maximum poll interval (300000ms) exceeded by 98ms (adjust max.poll.interval.ms for long-running message processing): leaving group, connector = kafka_IN, window = kafka_incoming
+2020-05-29T15:34:42,635; INFO ; 00029159; DF.ESP; (dfESPkafkaConnector.cpp:3133); {a9abb76d-4237-4ee8-ac91-2eec43c83ca6}[Connectors0095] dfESPkafkaConnector::event_cb(): RdKafka event callback: type = EVENT_LOG, message = 4-MAXPOLL: [thrd:main]: Application maximum poll interval (300000ms) exceeded by 120ms (adjust max.poll.interval.ms for long-running message processing): leaving group, connector = kafka_IN, window = Data_Ingestion_Publisher_Connector
