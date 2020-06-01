@@ -1,7 +1,6 @@
-GPSASDVESP01_62001.M
-GPSASDVESP01_62001.datainjestion.cq1.kafka_incoming.I
-GPSASDVESP01_62001.datainjestion.cq1.kafka_outgoing.O
-SASESPAdapterMetapub
-SASESPAdapterMetasub
-__consumer_offsets
-ingestion
+level1_62001.M
+level1_62001.atom_dataingestion.cq1.kafka_incoming.I
+level1_62001.atom_dataingestion.cq1.kafka_outgoing.O
+level3_62001.M
+level3_62001.atom_datareturn.cq1.kafka_incoming.I
+level3_62001.atom_datareturn.cq1.kafka_outgoing.O
