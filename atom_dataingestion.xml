@@ -1,0 +1,94 @@
+<project name="atom_dataingestion" threads="1" pubsub="auto" heartbeat-interval="1">
+  <metadata>
+    <meta id="studioUploadedBy">tom.tuning@gapac.com</meta>
+    <meta id="studioUploaded">1591021596279</meta>
+    <meta id="studioModifiedBy">tom.tuning@gapac.com</meta>
+    <meta id="studioModified">1591043518327</meta>
+    <meta id="layout">{"cq1":{"Data_Ingestion_Subscriber_Connector":{"x":90,"y":-525},"kafka_incoming":{"x":90,"y":-650}}}</meta>
+  </metadata>
+  <properties>
+    <property name="PROJ_DIR"><![CDATA[C:\Users\Public\ESP\Recaust]]></property>
+    <property name="PROJ_NAME"><![CDATA[SCRN_Data_Ingestion]]></property>
+    <property name="CQ_NAME"><![CDATA[cq1]]></property>
+    <property name="HIST_SOURCE_NAME"><![CDATA[python_pi_data]]></property>
+    <property name="ASSET_PATH"><![CDATA[Process\RecaustArea\LRC-RECAUST01, Asset Types\Lime Kiln\LRC-LMK01, Asset Types\Slaker\LRC-SLKR01, Asset Types\Mud Filter\LRC-MF01]]></property>
+  </properties>
+  <contqueries>
+    <contquery name="cq1">
+      <windows>
+        <window-source pubsub="true" index="pi_EMPTY" insert-only="true" name="kafka_incoming">
+          <schema>
+            <fields>
+              <field name="ID" type="int32" key="true"/>
+              <field name="elementindex" type="string"/>
+              <field name="element" type="string" key="true"/>
+              <field name="attribute" type="string"/>
+              <field name="value" type="string"/>
+              <field name="timestamp" type="stamp"/>
+              <field name="status" type="string"/>
+            </fields>
+          </schema>
+          <connectors>
+            <connector class="kafka" name="kafka_IN">
+              <properties>
+                <property name="type"><![CDATA[pub]]></property>
+                <property name="dateformat"><![CDATA['%Y-%m-%d %H:%M:%S]]></property>
+                <property name="kafkainitialoffset"><![CDATA[largest]]></property>
+                <property name="kafkaglobalconfig"><![CDATA[enable.sparse.connections=false;security.protocol=SSL]]></property>
+                <property name="useoffsetmsgid"><![CDATA[true]]></property>
+                <property name="kafkahostport"><![CDATA[b-2.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:9094]]></property>
+                <property name="kafkapartition"><![CDATA[0]]></property>
+                <property name="kafkatopic"><![CDATA[level1_62001.atom_dataingestion.cq1.kafka_incoming.I]]></property>
+                <property name="kafkatype"><![CDATA[binary]]></property>
+                <property name="urlhostport"><![CDATA[level1_62001]]></property>
+              </properties>
+            </connector>
+          </connectors>
+        </window-source>
+        <window-compute pubsub="true" index="pi_EMPTY" name="Data_Ingestion_Subscriber_Connector">
+          <schema>
+            <fields>
+              <field name="ID" type="int32" key="true"/>
+              <field name="elementindex" type="string"/>
+              <field name="element" type="string"/>
+              <field name="attribute" type="string"/>
+              <field name="value" type="string"/>
+              <field name="timestamp" type="stamp"/>
+              <field name="status" type="string"/>
+            </fields>
+          </schema>
+          <output>
+            <field-expr><![CDATA[elementindex]]></field-expr>
+            <field-expr><![CDATA[element]]></field-expr>
+            <field-expr><![CDATA[attribute]]></field-expr>
+            <field-expr><![CDATA[value]]></field-expr>
+            <field-expr><![CDATA[timestamp]]></field-expr>
+            <field-expr><![CDATA[status]]></field-expr>
+          </output>
+          <connectors>
+            <connector class="kafka" name="kafka_OUT">
+              <properties>
+                <property name="type"><![CDATA[sub]]></property>
+                <property name="dateformat"><![CDATA['%Y-%m-%d %H:%M:%S]]></property>
+                <property name="hotfailover"><![CDATA[true]]></property>
+                <property name="useoffsetmsgid"><![CDATA[true]]></property>
+                <property name="zookeeperhostport"><![CDATA[ z-1.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:2181]]></property>
+                <property name="kafkaglobalconfig"><![CDATA[enable.sparse.connections=false;security.protocol=SSL]]></property>
+                <property name="snapshot"><![CDATA[false]]></property>
+                <property name="kafkahostport"><![CDATA[b-2.edaviyaespprocessing.9mwv7t.c6.kafka.us-east-1.amazonaws.com:9094]]></property>
+                <property name="kafkapartition"><![CDATA[0]]></property>
+                <property name="kafkatopic"><![CDATA[level1_62001.atom_dataingestion.cq1.kafka_outgoing.O]]></property>
+                <property name="kafkatype"><![CDATA[binary]]></property>
+                <property name="urlhostport"><![CDATA[level1_62001]]></property>
+                <property name="numbufferedmsgs"><![CDATA[1000]]></property>
+              </properties>
+            </connector>
+          </connectors>
+        </window-compute>
+      </windows>
+      <edges>
+        <edge source="kafka_incoming" target="Data_Ingestion_Subscriber_Connector"/>
+      </edges>
+    </contquery>
+  </contqueries>
+</project>
