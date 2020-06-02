@@ -4,8 +4,8 @@
     <meta id="studioUploadedBy">tom.tuning@gapac.com</meta>
     <meta id="studioUploaded">1591108088849</meta>
     <meta id="studioModifiedBy">tom.tuning@gapac.com</meta>
-    <meta id="studioModified">1591108552021</meta>
-    <meta id="layout">{"cq1":{"Data_Return_Subscriber_Connector":{"x":90,"y":-525},"kafka_incoming":{"x":90,"y":-650}}}</meta>
+    <meta id="studioModified">1591113586777</meta>
+    <meta id="layout">{"cq1":{"kafka_incoming":{"x":90,"y":-650},"kafka_outgoing":{"x":90,"y":-525}}}</meta>
   </metadata>
   <properties>
     <property name="PROJ_DIR"><![CDATA[C:\Users\Public\ESP\Recaust]]></property>
@@ -46,7 +46,7 @@
             </connector>
           </connectors>
         </window-source>
-        <window-compute pubsub="true" index="pi_EMPTY" name="Data_Return_Subscriber_Connector">
+        <window-compute pubsub="true" index="pi_EMPTY" name="kafka_outgoing">
           <schema>
             <fields>
               <field name="ID" type="int32" key="true"/>
@@ -88,7 +88,7 @@
         </window-compute>
       </windows>
       <edges>
-        <edge source="kafka_incoming" target="Data_Return_Subscriber_Connector"/>
+        <edge source="kafka_incoming" target="kafka_outgoing"/>
       </edges>
     </contquery>
   </contqueries>
